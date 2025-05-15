@@ -1,0 +1,11 @@
+name: Build
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    - name: Get code
+      uses: actions/checkout@v3
+    - name: Install deps
+      run: npm ci
+    - name: Build project
+      run: npm run build
+      
