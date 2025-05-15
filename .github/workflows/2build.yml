@@ -2,10 +2,17 @@ name: Build
 on: [push, workflow_dispatch]
 jobs:
   build:
-    - name: Get code
-      uses: actions/checkout@v3
-    - name: Install deps
-      run: npm ci
-    - name: Build project
-      run: npm run build
-      
+    runs-on: windows-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install deps
+        run: npm ci
+      - name: Build project
+        run: npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+            path: build
+            name: build-files
+
